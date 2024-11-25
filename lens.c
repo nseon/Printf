@@ -6,7 +6,7 @@
 /*   By: nseon <nseon@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 10:55:42 by nseon             #+#    #+#             */
-/*   Updated: 2024/11/25 16:32:45 by nseon            ###   ########.fr       */
+/*   Updated: 2024/11/25 17:35:29 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static int	p_size(unsigned long long int nb)
 		n++;
 	while (nb > 16)
 	{
-			n++;
-			nb /= 16;
+		n++;
+		nb /= 16;
 	}
 	return (n + 1);
 }
@@ -38,16 +38,27 @@ static int	nb_size(int nb, int div)
 
 	n = 0;
 	if (nb < 0)
-		{
+	{
 		n++;
 		nb *= -1;
-		}
+	}
 	while (nb > div)
 	{
-			n++;
-			nb /= div;
+		n++;
+		nb /= div;
 	}
 	return (n + 1);
+}
+
+static int	check(const char *format, int i)
+{
+	i++;
+	if (format[i] == 'c' || format[i] == '%' || format[i] == 's'
+		|| format[i] == 'p' || format[i] == 'd' || format[i] == 'i'
+		|| format[i] == 'u' || format[i] == 'x' || format[i] == 'X')
+		return (1);
+	else
+		return (0);
 }
 
 static int	size_format(const char *format, va_list args, int i)
@@ -77,7 +88,7 @@ int	str_size(const char *format, va_list args)
 	len = 0;
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i - 1] != '%')
+		if (format[i] == '%' && format[i - 1] != '%' && check(format, i))
 		{
 			len += size_format(format, args, i);
 			minus += 2;
