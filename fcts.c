@@ -6,7 +6,7 @@
 /*   By: nseon <nseon@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:50:54 by nseon             #+#    #+#             */
-/*   Updated: 2024/11/26 15:21:38 by nseon            ###   ########.fr       */
+/*   Updated: 2024/11/26 16:20:51 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	count(int n)
 	return (count);
 }
 
-char	*hex_itoa(unsigned int n, char c)
+char	*uitoa_base(unsigned int n, char c, char *base, int div)
 {
 	int		i;
 	char	*tab;
@@ -53,11 +53,11 @@ char	*hex_itoa(unsigned int n, char c)
 		return (0);
 	while (n > 15)
 	{
-		tab[--i] = "0123456789abcdef"[n % 16];
+		tab[--i] = base[n % div];
 		if (c == 'X' && 'a' <= tab[i] && tab[i] <= 'f')
 			tab[i] -= 32;
 		n /= 10;
 	}
-	tab[i] = "0123456789abcdef"[n];
+	tab[i] = base[n];
 	return (tab);
 }

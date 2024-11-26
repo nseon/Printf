@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 
-SRC = lens.c printf.c
+SRC = lens.c printf.c fill.c fcts.c
 
 OBJ = $(SRC:.c=.o)
 
