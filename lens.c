@@ -6,7 +6,7 @@
 /*   By: nseon <nseon@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 10:55:42 by nseon             #+#    #+#             */
-/*   Updated: 2024/11/25 17:35:29 by nseon            ###   ########.fr       */
+/*   Updated: 2024/11/26 11:24:42 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static int	size_format(const char *format, va_list args, int i)
 		return (ft_strlen(va_arg(args, char *)));
 	else if (format[i + 1] == 'p')
 		return (p_size((unsigned long long int)(va_arg(args, void *))));
-	else if (format[i + 1] == 'd' || format[i + 2] == 'i' || format[i + 2] == 'u')
+	else if (format[i + 1] == 'd' || format[i + 2] == 'i'
+		|| format[i + 2] == 'u')
 		return (nb_size(va_arg(args, int), 10));
 	else if (format[i + 1] == 'x' || format[i + 2] == 'X')
 		return (nb_size(va_arg(args, unsigned int), 16));
