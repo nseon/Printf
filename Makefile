@@ -6,22 +6,18 @@ OBJ = $(SRC:.c=.o)
 
 DEP = $(SRC:.c=.d)
 
-MODE ?=
-MODETRACE = .mt
-LASTMODE = $(shell cat $(MODETRACE) 2>/dev/null)
+LIBDIR = Libft
+LIBA = libft.a
 
 CC = cc
 CPPFLAGS = -MMD -MP
 CFLAGS = -Wall -Werror -Wextra
 
-ifneq ($(MODE), $(LASTMODE))
-$(NAME): force
-endif
-
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	echo $(MODE) > $(MODETRACE)
+	$(MAKE) -C $(LIBDIR)
+	cp $(LIBDIR)/$(LIBA) $@
 	ar -rcs $@ $(OBJ)
 
 %.o: %.c
@@ -31,12 +27,11 @@ $(NAME) : $(OBJ)
 
 clean :
 	rm -f $(OBJ) $(DEP)
+	$(MAKE) fclean -C $(LIBDIR)
 
 fclean : clean
-	rm -f $(NAME)
-
-force:
+	rm -f $(NAME) $(LIBA)
 
 re : fclean all
 
-.PHONY: bonus all clean fclean re force
+.PHONY: all clean fclean re

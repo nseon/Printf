@@ -6,13 +6,14 @@
 /*   By: nseon <nseon@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 10:55:42 by nseon             #+#    #+#             */
-/*   Updated: 2024/11/26 16:38:19 by nseon            ###   ########.fr       */
+/*   Updated: 2024/11/27 10:18:13 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "../Libft/libft.h"
-#include "printf.h"
+#include "Libft/libft.h"
+#include "ft_printf.h"
+#include <stdlib.h>
 
 /*
 fill the malloc
@@ -40,21 +41,22 @@ static int	str_fill(char *dst, char *src, int j)
 		i++;
 		j++;
 	}
+	free(src);
 	return (j);
+}
+
+int	fill_char(char *tab, char c, int j)
+{
+	tab[j] = c;
+	return (j + 1);
 }
 
 static int	fill_format(char c, va_list args, int j, char *tab)
 {
 	if (c == 'c')
-	{
-		tab[j] = va_arg(args, int);
-		return (j + 1);
-	}
+		fill_char(tab, c, j);
 	else if (c == '%')
-	{
-		tab[j] = '%';
-		return (j + 1);
-	}
+		fill_char(tab, '%', j);
 	else if (c == 's')
 		return (str_fill(tab, va_arg(args, char *), j));
 	else if (c == 'd' || c == 'i')
@@ -63,13 +65,16 @@ static int	fill_format(char c, va_list args, int j, char *tab)
 		return (str_fill(tab, uitoa_base(va_arg(args, unsigned int)
 					, c, "0123456789abcdef", 16), j));
 	else if (c == 'p')
+	{
+		tab[j] = '0';
+		tab[++j] = 'X';
 		return (str_fill(tab, uitoa_base((unsigned long long int)
-					va_arg(args, void *), c, "0123456789abcdef", 16), j));
+					va_arg(args, void *), c, "0123456789abcdef", 16), ++j));
+	}
 	else if (c == 'u')
 		return (str_fill(tab, uitoa_base(va_arg(args, unsigned int)
 					, c, "0123456789", 10), j));
-	else
-		return (0);
+	return (0);
 }
 
 void	fill(char *tab, const char *format, va_list args)

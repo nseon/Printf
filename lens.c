@@ -6,12 +6,12 @@
 /*   By: nseon <nseon@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 10:55:42 by nseon             #+#    #+#             */
-/*   Updated: 2024/11/26 14:49:05 by nseon            ###   ########.fr       */
+/*   Updated: 2024/11/27 09:44:44 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "../Libft/libft.h"
+#include "Libft/libft.h"
 
 /*
 We count the total size of the string we're going to malloc
