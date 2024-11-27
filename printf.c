@@ -6,7 +6,7 @@
 /*   By: nseon <nseon@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 10:16:50 by nseon             #+#    #+#             */
-/*   Updated: 2024/11/27 09:55:08 by nseon            ###   ########.fr       */
+/*   Updated: 2024/11/27 14:00:42 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "ft_printf.h"
+
+#include <stdio.h>
 
 int	ft_printf(const char *format, ...)
 {
@@ -28,25 +30,8 @@ int	ft_printf(const char *format, ...)
 	tab = malloc(len * sizeof(char) + 1);
 	if (tab == NULL)
 		return (0);
-	fill(tab, format, args_bis);
+	fill(tab, format, args_bis, len);
 	write(1, &tab, len);
 	free(tab);
 	return (len);
 }
-/*
-#include <stdio.h>
-
-int	main()
-{
-	int		n;
-	char	c;
-	char	*str;
-	int		test;
-
-	n = -9556;
-	c = 'c';
-	str = "test+++4";
-	test = ft_printf("%%123%d %%456789%s", n, str);
-	printf("%d", test);
-}
-*/
