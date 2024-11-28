@@ -24,9 +24,9 @@ int	main()
 
 	n = INT_MIN;
 	c = 'd';
-	test = printf("%%%c%%%p ", 'A', str);
-	printf("return (%d)\n", test);
-	test = ft_printf("%%%c%%%p ", 'A', str);
+	//test = printf("%%%c%%%p ", 'A', str);
+	//printf("return (%d)\n", test);
+	test = ft_printf("ouiyh|%s|µbqosi<dyfg ", str);
 	printf("return (%d)\n", test);
 	return (0);
 }
