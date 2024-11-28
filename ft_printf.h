@@ -6,7 +6,7 @@
 /*   By: nseon <nseon@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:42:28 by nseon             #+#    #+#             */
-/*   Updated: 2024/11/27 14:01:51 by nseon            ###   ########.fr       */
+/*   Updated: 2024/11/28 16:59:42 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <stddef.h>
+# include <stdio.h>
 
 int		ft_printf(const char *format, ...);
 int		str_size(const char *format, va_list args);
-char	*uitoa_base(unsigned int n, char c, char *base, int div);
-void	fill(char *tab, const char *format, va_list args, int len);
+char	*uitoa_base(unsigned long long int n, char c, char *base, unsigned int div);
+void	fill(char *tab, const char *format, va_list args);
+int		ft_strlen2(const char *s);
 
 #endif

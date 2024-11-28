@@ -11,7 +11,7 @@ LIBA = libft.a
 
 CC = cc
 CPPFLAGS = -MMD -MP
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 
 all : $(NAME)
 

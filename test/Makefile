@@ -6,7 +6,7 @@ LIBDIR = ../
 
 CC = cc
 CPPFLAGS = -I../
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 
 all : $(NAME)
 

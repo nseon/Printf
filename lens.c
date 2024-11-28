@@ -6,12 +6,12 @@
 /*   By: nseon <nseon@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 10:55:42 by nseon             #+#    #+#             */
-/*   Updated: 2024/11/27 09:44:44 by nseon            ###   ########.fr       */
+/*   Updated: 2024/11/28 16:47:46 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "Libft/libft.h"
+#include "ft_printf.h"
 
 /*
 We count the total size of the string we're going to malloc
@@ -22,9 +22,9 @@ static int	p_size(unsigned long long int nb)
 	int	n;
 
 	n = 0;
-	if (nb < 0)
-		n++;
-	while (nb > 16)
+	if (nb == 0)
+		return (3);
+	while (nb >= 16)
 	{
 		n++;
 		nb /= 16;
@@ -32,7 +32,7 @@ static int	p_size(unsigned long long int nb)
 	return (n + 1);
 }
 
-static int	nb_size(int nb, int div)
+static int	nb_size(long long int nb, int div)
 {
 	int	n;
 
@@ -42,7 +42,7 @@ static int	nb_size(int nb, int div)
 		n++;
 		nb *= -1;
 	}
-	while (nb > div)
+	while (nb >= div)
 	{
 		n++;
 		nb /= div;
@@ -66,14 +66,15 @@ static int	size_format(const char *format, va_list args, int i)
 	if (format[i + 1] == 'c' || format[i + 1] == '%')
 		return (1);
 	else if (format[i + 1] == 's')
-		return (ft_strlen(va_arg(args, char *)));
+		return (ft_strlen2(va_arg(args, char *)));
 	else if (format[i + 1] == 'p')
 		return (2 + p_size((unsigned long long int)(va_arg(args, void *))));
-	else if (format[i + 1] == 'd' || format[i + 2] == 'i'
-		|| format[i + 2] == 'u')
+	else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		return (nb_size(va_arg(args, int), 10));
-	else if (format[i + 1] == 'x' || format[i + 2] == 'X')
+	else if (format[i + 1] == 'x' || format[i + 1] == 'X')
 		return (nb_size(va_arg(args, unsigned int), 16));
+	else if (format[i + 1] == 'u')
+		return (nb_size(va_arg(args, unsigned int), 10));
 	else
 		return (0);
 }
@@ -89,12 +90,14 @@ int	str_size(const char *format, va_list args)
 	len = 0;
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i - 1] != '%' && check(format, i))
+		if (format[i] == '%' && check(format, i))
 		{
 			len += size_format(format, args, i);
 			minus += 2;
+			i += 2;
 		}
-		i++;
+		else
+			i++;
 	}
 	return (len + i - minus);
 }
