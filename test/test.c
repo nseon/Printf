@@ -26,7 +26,7 @@ int	main()
 	c = 'd';
 	//test = printf("%%%c%%%p ", 'A', str);
 	//printf("return (%d)\n", test);
-	test = ft_printf("ouiyh|%s|µbqosi<dyfg ", str);
+	test = ft_printf("ou%ciyh||µbqosi<dyfg ",c);
 	printf("return (%d)\n", test);
 	return (0);
 }

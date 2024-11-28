@@ -10,15 +10,19 @@ CFLAGS = -Wall -Werror -Wextra -g3
 
 all : $(NAME)
 
-$(NAME) :
-	$(MAKE) -C $(LIBDIR)
+$(NAME) : lib
 	$(CC) $(CPPFLAGS) $(SRC) -L$(LIBDIR) -lftprintf -o $(NAME)
 
 clean :
 	$(MAKE) fclean -C $(LIBDIR)
 
+lib : force
+	$(MAKE) -C $(LIBDIR)
+
 fclean : clean
 	rm -f $(NAME)
+
+force :
 
 re : fclean all
 
