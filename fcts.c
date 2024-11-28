@@ -6,7 +6,7 @@
 /*   By: nseon <nseon@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:50:54 by nseon             #+#    #+#             */
-/*   Updated: 2024/11/28 17:01:55 by nseon            ###   ########.fr       */
+/*   Updated: 2024/11/28 17:09:46 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	count(unsigned long long int n, int div)
 	return (count);
 }
 
-char	*uitoa_base(unsigned long long int n, char c, char *base, unsigned int div)
+char	*uitoa_base(unsigned long long int n, char c
+		, char *base, unsigned int div)
 {
 	int		i;
 	char	*tab;
