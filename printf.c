@@ -6,7 +6,7 @@
 /*   By: nseon <nseon@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 10:16:50 by nseon             #+#    #+#             */
-/*   Updated: 2024/11/28 16:48:16 by nseon            ###   ########.fr       */
+/*   Updated: 2024/11/29 11:26:21 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@ int	ft_printf(const char *format, ...)
 	int		len;
 	char	*tab;
 
+	if (format == NULL)
+		return (-1);
 	va_start(args, format);
-	va_start(args_bis, format);
 	len = str_size(format, args);
-	printf("%d\n", len);
 	tab = malloc(len * sizeof(char) + 1);
 	if (tab == NULL)
 		return (0);
+	va_start(args_bis, format);
 	fill(tab, format, args_bis);
-	write(1, tab, len);
+	len = write(1, tab, len);
 	free(tab);
 	return (len);
 }

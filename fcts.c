@@ -6,7 +6,7 @@
 /*   By: nseon <nseon@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:50:54 by nseon             #+#    #+#             */
-/*   Updated: 2024/11/28 17:09:46 by nseon            ###   ########.fr       */
+/*   Updated: 2024/11/29 11:26:32 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	ft_strlen2(const char *s)
 	int	n;
 
 	n = 0;
-	printf("|%s|\n", s);
 	if (s == NULL)
 		return (6);
 	while (s[n] != '\0')
